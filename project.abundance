@@ -1,14 +1,328 @@
 {
     "atomType": "Molecule",
-    "name": "A test alksjdlfk",
+    "name": "A-test-alksjdlfk",
     "x": 0,
     "y": 0,
     "uniqueID": "0db0ec0e-352e-48a6-90a5-8bcd292e01f2",
     "ioValues": [],
     "description": "Molecules provide an organizational structure to contain atoms. Double click on a molecule to enter it. Use the up arrow in the upper right hand corner of the screen to go up one level.",
     "topLevel": true,
-    "allAtoms": [],
-    "allConnectors": [],
+    "allAtoms": [
+        {
+            "atomType": "Output",
+            "name": "Output",
+            "x": 0.98,
+            "y": 0.5,
+            "uniqueID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f",
+            "ioValues": [],
+            "description": "Connect geometry here to make it available in the next level up. "
+        },
+        {
+            "atomType": "Rectangle",
+            "name": "Rectangle",
+            "x": 0.1488095238095238,
+            "y": 0.4666666666666667,
+            "uniqueID": "64094d08-eb69-4188-88fd-5da108267d06",
+            "ioValues": [
+                {
+                    "name": "x length",
+                    "ioValue": 10
+                },
+                {
+                    "name": "y length",
+                    "ioValue": 10
+                }
+            ],
+            "description": "Creates a new rectangle."
+        },
+        {
+            "atomType": "Extrude",
+            "name": "Extrude",
+            "x": 0.3386243386243386,
+            "y": 0.45833333333333337,
+            "uniqueID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9",
+            "ioValues": [
+                {
+                    "name": "geometry",
+                    "ioValue": "64094d08-eb69-4188-88fd-5da108267d06"
+                },
+                {
+                    "name": "height",
+                    "ioValue": 10
+                }
+            ],
+            "description": "Extrudes a 2D shape. Input can be negitive. "
+        },
+        {
+            "atomType": "Move",
+            "name": "Move",
+            "x": 0.4947089947089947,
+            "y": 0.4833333333333333,
+            "uniqueID": "2874589f-4d83-410f-91ca-2266fe5fbcf6",
+            "ioValues": [
+                {
+                    "name": "geometry",
+                    "ioValue": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9"
+                },
+                {
+                    "name": "xDist",
+                    "ioValue": 100
+                },
+                {
+                    "name": "yDist",
+                    "ioValue": 0
+                },
+                {
+                    "name": "zDist",
+                    "ioValue": 0
+                }
+            ],
+            "description": "Moves a shape laterally in X, Y, Z."
+        },
+        {
+            "atomType": "GitHubMolecule",
+            "name": "Radial-Pattern",
+            "x": 0.6256613756613757,
+            "y": 0.3611111111111111,
+            "uniqueID": "f635dfbb-77d2-4799-8859-94de758576dc",
+            "ioValues": [
+                {
+                    "name": "Number",
+                    "ioValue": 10
+                },
+                {
+                    "name": "Angle",
+                    "ioValue": 10
+                },
+                {
+                    "name": "Shape",
+                    "ioValue": "2874589f-4d83-410f-91ca-2266fe5fbcf6"
+                }
+            ],
+            "description": "Molecules provide an organizational structure to contain atoms. Double click on a molecule to enter it. Use the up arrow in the upper right hand corner of the screen to go up one level.",
+            "topLevel": false,
+            "allAtoms": [
+                {
+                    "atomType": "Output",
+                    "name": "Output",
+                    "x": 0.98,
+                    "y": 0.5,
+                    "uniqueID": "6505c1a2-80ac-49f0-903d-aad75115e971",
+                    "ioValues": [],
+                    "description": "Connect geometry here to make it available in the next level up. "
+                },
+                {
+                    "atomType": "Code",
+                    "name": "Code",
+                    "x": 0.45622489959839363,
+                    "y": 0.6174698795180722,
+                    "uniqueID": "15677686-8bd7-4371-bac0-4781f756ff87",
+                    "ioValues": [
+                        {
+                            "name": "Shape",
+                            "ioValue": "2874589f-4d83-410f-91ca-2266fe5fbcf6"
+                        },
+                        {
+                            "name": "Number",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "Angle",
+                            "ioValue": 10
+                        }
+                    ],
+                    "description": "Defines a Replicad code block.",
+                    "codeVersion": 1,
+                    "code": "//Inputs:[Shape, Number, Angle];\n\nconsole.log(Shape)\nlet shapesArray = [];\nfor (let i = 0; i < Number; i++) {\n    let rotatedShape = await Rotate(Shape, 0, 0, Angle * i)\n    shapesArray.push(rotatedShape)\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n"
+                },
+                {
+                    "atomType": "Rectangle",
+                    "name": "Rectangle",
+                    "x": 0.1678714859437751,
+                    "y": 0.2168674698795181,
+                    "uniqueID": "1494bdab-433d-4f58-a7fe-bc1ca03635a3",
+                    "ioValues": [
+                        {
+                            "name": "x length",
+                            "ioValue": 3
+                        },
+                        {
+                            "name": "y length",
+                            "ioValue": 3
+                        }
+                    ],
+                    "description": "Creates a new rectangle."
+                },
+                {
+                    "atomType": "Move",
+                    "name": "Move",
+                    "x": 0.3927710843373494,
+                    "y": 0.3042168674698795,
+                    "uniqueID": "b106ae8e-d45b-4304-b211-01989ddad653",
+                    "ioValues": [
+                        {
+                            "name": "geometry",
+                            "ioValue": "8a596e66-3095-4bbb-9fbd-2e4e9797731b"
+                        },
+                        {
+                            "name": "xDist",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "yDist",
+                            "ioValue": 0
+                        },
+                        {
+                            "name": "zDist",
+                            "ioValue": 0
+                        }
+                    ],
+                    "description": "Moves a shape laterally in X, Y, Z."
+                },
+                {
+                    "atomType": "Extrude",
+                    "name": "Extrude",
+                    "x": 0.26265060240963856,
+                    "y": 0.29819277108433734,
+                    "uniqueID": "8a596e66-3095-4bbb-9fbd-2e4e9797731b",
+                    "ioValues": [
+                        {
+                            "name": "geometry",
+                            "ioValue": "1494bdab-433d-4f58-a7fe-bc1ca03635a3"
+                        },
+                        {
+                            "name": "height",
+                            "ioValue": 10
+                        }
+                    ],
+                    "description": "Extrudes a 2D shape. Input can be negitive. "
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Number",
+                    "x": 0.029699999999999997,
+                    "y": 0.4246987951807229,
+                    "uniqueID": "61e097ab-e1a9-4c82-a21a-a66b2687d222",
+                    "ioValues": [],
+                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
+                    "type": "number"
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Angle",
+                    "x": 0.029699999999999997,
+                    "y": 0.5602409638554217,
+                    "uniqueID": "12eecfd8-d49a-417d-a881-35728f74a562",
+                    "ioValues": [],
+                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
+                    "type": "number"
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Shape",
+                    "x": 0.029699999999999997,
+                    "y": 0.8222891566265061,
+                    "uniqueID": "d4eb3dfe-a519-4f73-9f55-890de689fa6a",
+                    "ioValues": [],
+                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
+                    "type": "number"
+                }
+            ],
+            "allConnectors": [
+                {
+                    "ap1Name": "geometry",
+                    "ap2Name": "number or geometry",
+                    "ap2Primary": false,
+                    "ap1ID": "15677686-8bd7-4371-bac0-4781f756ff87",
+                    "ap2ID": "6505c1a2-80ac-49f0-903d-aad75115e971"
+                },
+                {
+                    "ap1Name": "geometry",
+                    "ap2Name": "geometry",
+                    "ap2Primary": true,
+                    "ap1ID": "1494bdab-433d-4f58-a7fe-bc1ca03635a3",
+                    "ap2ID": "8a596e66-3095-4bbb-9fbd-2e4e9797731b"
+                },
+                {
+                    "ap1Name": "geometry",
+                    "ap2Name": "geometry",
+                    "ap2Primary": true,
+                    "ap1ID": "8a596e66-3095-4bbb-9fbd-2e4e9797731b",
+                    "ap2ID": "b106ae8e-d45b-4304-b211-01989ddad653"
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "Number",
+                    "ap2Primary": false,
+                    "ap1ID": "61e097ab-e1a9-4c82-a21a-a66b2687d222",
+                    "ap2ID": "15677686-8bd7-4371-bac0-4781f756ff87"
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "Angle",
+                    "ap2Primary": false,
+                    "ap1ID": "12eecfd8-d49a-417d-a881-35728f74a562",
+                    "ap2ID": "15677686-8bd7-4371-bac0-4781f756ff87"
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "Shape",
+                    "ap2Primary": false,
+                    "ap1ID": "d4eb3dfe-a519-4f73-9f55-890de689fa6a",
+                    "ap2ID": "15677686-8bd7-4371-bac0-4781f756ff87"
+                }
+            ],
+            "parentRepo": {
+                "privateRepo": false,
+                "repoName": "Radial-Pattern",
+                "dateCreated": "2025-06-20T19:14:02Z",
+                "readMe": "https://raw.githubusercontent.com/alzatin/Radial-Pattern/master/README.md?sanitize=true",
+                "yyyy": 2025,
+                "topMoleculeID": "ab6fe8a2-4661-41e4-bc3f-45058cc58bdc",
+                "githubMoleculesUsed": [],
+                "html_url": "https://github.com/alzatin/Radial-Pattern",
+                "topics": [
+                    "abundance-tool"
+                ],
+                "parentRepo": null,
+                "forks": 0,
+                "dateModified": "739450",
+                "ranking": 0,
+                "searchField": "radial-pattern alzatin  abundance-tool",
+                "owner": "alzatin",
+                "description": "",
+                "contentURL": "https://raw.githubusercontent.com/alzatin/Radial-Pattern/master/project.abundance?sanitize=true",
+                "svgURL": "https://raw.githubusercontent.com/alzatin/Radial-Pattern/master/project.svg?sanitize=true",
+                "isLocal": false
+            },
+            "unitsKey": "MM",
+            "fileTypeVersion": 1,
+            "compiledBom": []
+        }
+    ],
+    "allConnectors": [
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "geometry",
+            "ap2Primary": true,
+            "ap1ID": "64094d08-eb69-4188-88fd-5da108267d06",
+            "ap2ID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9"
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "geometry",
+            "ap2Primary": true,
+            "ap1ID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9",
+            "ap2ID": "2874589f-4d83-410f-91ca-2266fe5fbcf6"
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "Shape",
+            "ap2Primary": false,
+            "ap1ID": "2874589f-4d83-410f-91ca-2266fe5fbcf6",
+            "ap2ID": "f635dfbb-77d2-4799-8859-94de758576dc"
+        }
+    ],
     "unitsKey": "MM",
     "fileTypeVersion": 1,
     "compiledBom": {},
