@@ -14,7 +14,12 @@
             "x": 0.98,
             "y": 0.5,
             "uniqueID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f",
-            "ioValues": [],
+            "ioValues": [
+                {
+                    "name": "number or geometry",
+                    "ioValue": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9"
+                }
+            ],
             "description": "Connect geometry here to make it available in the next level up. "
         },
         {
@@ -317,6 +322,13 @@
         },
         {
             "ap1Name": "geometry",
+            "ap2Name": "number or geometry",
+            "ap2Primary": false,
+            "ap1ID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9",
+            "ap2ID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f"
+        },
+        {
+            "ap1Name": "geometry",
             "ap2Name": "Shape",
             "ap2Primary": false,
             "ap1ID": "2874589f-4d83-410f-91ca-2266fe5fbcf6",
@@ -325,6 +337,6 @@
     ],
     "unitsKey": "MM",
     "fileTypeVersion": 1,
-    "compiledBom": {},
+    "compiledBom": [],
     "filetypeVersion": 1
 }
