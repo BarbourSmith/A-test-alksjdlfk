@@ -1,590 +1,158 @@
 {
-    "atomType": "Molecule",
-    "name": "A-test-alksjdlfk",
-    "x": 0,
-    "y": 0,
-    "uniqueID": "0db0ec0e-352e-48a6-90a5-8bcd292e01f2",
-    "ioValues": [],
-    "description": "Molecules provide an organizational structure to contain atoms. Double click on a molecule to enter it. Use the up arrow in the upper right hand corner of the screen to go up one level.",
-    "topLevel": true,
-    "allAtoms": [
+  "atomType": "Molecule",
+  "x": 0,
+  "y": 0,
+  "uniqueID": "0db0ec0e-352e-48a6-90a5-8bcd292e01f2",
+  "name": "A-test-alksjdlfk",
+  "topLevel": true,
+  "allAtoms": [
+    {
+      "atomType": "Output",
+      "x": 0.98,
+      "y": 0.5,
+      "uniqueID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f",
+      "ioValues": [
         {
-            "atomType": "Output",
-            "name": "Output",
-            "x": 0.98,
-            "y": 0.5,
-            "uniqueID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f",
-            "ioValues": [
-                {
-                    "name": "number or geometry",
-                    "ioValue": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9"
-                }
-            ],
-            "description": "Connect geometry here to make it available in the next level up. "
-        },
-        {
-            "atomType": "Extrude",
-            "name": "Extrude",
-            "x": 0.5562169312169313,
-            "y": 0.233983286908078,
-            "uniqueID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9",
-            "ioValues": [
-                {
-                    "name": "geometry",
-                    "ioValue": "ae5c1375-c39a-45af-a537-244e63047412"
-                },
-                {
-                    "name": "height",
-                    "ioValue": 10
-                }
-            ],
-            "description": "Extrudes a 2D shape. Input can be negitive. "
-        },
-        {
-            "atomType": "GitHubMolecule",
-            "name": "Corrugated-Roofing-Circle-v2",
-            "x": 0.11740473738414005,
-            "y": 0.33147632311977715,
-            "uniqueID": "ae5c1375-c39a-45af-a537-244e63047412",
-            "ioValues": [
-                {
-                    "name": "Number",
-                    "ioValue": 20
-                }
-            ],
-            "description": "Molecules provide an organizational structure to contain atoms. Double click on a molecule to enter it. Use the up arrow in the upper right hand corner of the screen to go up one level.",
-            "topLevel": false,
-            "allAtoms": [
-                {
-                    "atomType": "Output",
-                    "name": "Output",
-                    "x": 0.98,
-                    "y": 0.5,
-                    "uniqueID": "4f90eaaf-a2ee-4c2a-a11b-60925c22246d",
-                    "ioValues": [
-                        {
-                            "name": "number or geometry",
-                            "ioValue": "bcf176d3-78e9-4c74-9140-e34aea68c83d"
-                        }
-                    ],
-                    "description": "Connect geometry here to make it available in the next level up. "
-                },
-                {
-                    "atomType": "Code",
-                    "name": "Code",
-                    "x": 0.4708994708994709,
-                    "y": 0.4444444444444444,
-                    "uniqueID": "bcf176d3-78e9-4c74-9140-e34aea68c83d",
-                    "ioValues": [
-                        {
-                            "name": "number",
-                            "ioValue": 20
-                        },
-                        {
-                            "name": "height",
-                            "ioValue": 40
-                        }
-                    ],
-                    "description": "Defines a Replicad code block.",
-                    "codeVersion": 1,
-                    "code": " \n      //Inputs:[number, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      let factor = 2;\n      const period = 72;\n      const amplitude = 19 / 2;\n      const xScale = period / (2 * Math.PI);\n      const nPeriods = number; \n      const circumference = nPeriods * period;\n      const radius = circumference/(2*Math.PI);\n\n      function computeX(fraction){\n        const theta = 2 * Math.PI *fraction; // angle in radians\n        const x = radius*Math.cos(theta);\n        return x;\n      }\n\n      function computeY(fraction){\n        const theta = 2 * Math.PI * fraction; // angle in radians\n        const y = radius*Math.sin(theta);\n        return y;\n      }\n\n      function tangentAngle(fraction, clockwise = false) {\n          const theta = 2 * Math.PI * fraction;\n          const phi = clockwise\n              ? theta - Math.PI / 2 // CW\n              : theta + Math.PI / 2; // CCW\n\n          let degrees = phi * (180 / Math.PI);\n        \n          return degrees; // radians\n      }\n      \n      let shape = replicad.draw();\n\n      \n      shape.movePointerTo([computeX(0), computeY(0)])\n      \n      for (let i = 0; i < nPeriods; i++) {\n        let oneLess = (2*i-1)/(2*number);\n        let fractionStart = i/number //The percentage of the way around the circle that this point is\n        let fractionMiddle =  (2*i+1)/(2*number);\n      \n        // First spline: 0 to ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ (up and back down)\n        shape = shape.smoothSplineTo(\n          [computeX(fractionStart), computeY(fractionStart)],\n          {\n            startTangent: tangentAngle(oneLess) + 45,         // Going up at start\n            startFactor: factor,\n            endTangent: tangentAngle(fractionStart)-45,          // Coming down at ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ\n            endFactor: factor\n          }\n        )\n        // Second spline: ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ to 2ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ (down and back up)\n        .smoothSplineTo(\n          [computeX(fractionMiddle), computeY(fractionMiddle)],\n          {\n            startTangent: tangentAngle(fractionStart)-45,        // Going down at ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ\n            startFactor: factor,\n            endTangent: tangentAngle(fractionMiddle) + 45,           // Coming up at 2ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ\n            endFactor: factor\n          }\n        );\n      }\n\n      shape = shape.smoothSplineTo(\n          [computeX(0), computeY(0)],\n          {\n            startTangent: tangentAngle((2*number-1)/(2*number))+45,        // Going down at ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ\n            startFactor: factor,\n            endTangent: tangentAngle(0) - 45,           // Coming up at 2ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ\n            endFactor: factor\n          });\n      \n      // Add base lines and close shape\n      shape = shape\n        .close();                          // Close path\n\n      const newPlane = new replicad.Plane().pivot(0, 'Y');\n      \n      //For our new geometry we need to define the tags, color, plane, etc\n      let shape2 = {\n          geometry: [shape], \n          tags: [\"aTag\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n      \n      //Then we can return our created shape in just the same way\n      return shape2\n      "
-                },
-                {
-                    "atomType": "Input",
-                    "name": "Number",
-                    "x": 0.029699999999999997,
-                    "y": 0.39444444444444443,
-                    "uniqueID": "2743d8d3-a53b-45e0-b4ec-07587a9830ea",
-                    "ioValues": [],
-                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
-                    "type": "number"
-                }
-            ],
-            "allConnectors": [
-                {
-                    "ap1Name": "geometry",
-                    "ap2Name": "number or geometry",
-                    "ap2Primary": false,
-                    "ap1ID": "bcf176d3-78e9-4c74-9140-e34aea68c83d",
-                    "ap2ID": "4f90eaaf-a2ee-4c2a-a11b-60925c22246d"
-                },
-                {
-                    "ap1Name": "number or geometry",
-                    "ap2Name": "number",
-                    "ap2Primary": false,
-                    "ap1ID": "2743d8d3-a53b-45e0-b4ec-07587a9830ea",
-                    "ap2ID": "bcf176d3-78e9-4c74-9140-e34aea68c83d"
-                }
-            ],
-            "parentRepo": {
-                "privateRepo": false,
-                "repoName": "Corrugated-Roofing-Circle-v2",
-                "dateCreated": "2025-07-11T20:40:29Z",
-                "readMe": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Circle-v2/master/README.md?sanitize=true",
-                "yyyy": 2025,
-                "topMoleculeID": "74e97323-dbcf-4577-bf9a-c3bca8a2acee",
-                "githubMoleculesUsed": [],
-                "html_url": "https://github.com/BarbourSmith/Corrugated-Roofing-Circle-v2",
-                "topics": [],
-                "parentRepo": null,
-                "forks": 0,
-                "dateModified": "739455",
-                "ranking": 0,
-                "searchField": "corrugated-roofing-circle-v2 barboursmith this project recreates the corrugated roofing circle using splines instead of a sampled function which is hopefully more performant ",
-                "owner": "BarbourSmith",
-                "description": "This project recreates the corrugated roofing circle using splines instead of a sampled function which is hopefully more performant",
-                "contentURL": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Circle-v2/master/project.abundance?sanitize=true",
-                "svgURL": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Circle-v2/master/project.svg?sanitize=true",
-                "isLocal": false
-            },
-            "unitsKey": "Unitless",
-            "fileTypeVersion": 1,
-            "compiledBom": []
-        },
-        {
-            "atomType": "Gcode",
-            "name": "Gcode",
-            "x": 0.6501322751322751,
-            "y": 0.649025069637883,
-            "uniqueID": "d532c8de-9811-4dd6-9d8a-33226b7e2b52",
-            "ioValues": [
-                {
-                    "name": "Geometry",
-                    "ioValue": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9"
-                },
-                {
-                    "name": "Tool Size",
-                    "ioValue": 6.35
-                },
-                {
-                    "name": "Passes",
-                    "ioValue": 6
-                },
-                {
-                    "name": "Speed",
-                    "ioValue": 500
-                },
-                {
-                    "name": "Cut Through",
-                    "ioValue": 1
-                },
-                {
-                    "name": "Part Name",
-                    "ioValue": "A-test-alksjdlfk"
-                }
-            ],
-            "description": "Generates Maslow gcode from the input geometry.",
-            "partName": "A-test-alksjdlfk"
-        },
-        {
-            "atomType": "Circle",
-            "name": "Circle",
-            "x": 0.7322348094747684,
-            "y": 0.6016713091922006,
-            "uniqueID": "e7516ae2-7c7f-4838-a48c-28783827363b",
-            "ioValues": [
-                {
-                    "name": "diameter",
-                    "ioValue": 200
-                }
-            ],
-            "description": "Creates a new circle."
-        },
-        {
-            "atomType": "Extrude",
-            "name": "Extrude",
-            "x": 0.8619979402677652,
-            "y": 0.6128133704735376,
-            "uniqueID": "366246b9-7e0d-432d-82ab-621cda33ac78",
-            "ioValues": [
-                {
-                    "name": "geometry",
-                    "ioValue": "e7516ae2-7c7f-4838-a48c-28783827363b"
-                },
-                {
-                    "name": "height",
-                    "ioValue": 10
-                }
-            ],
-            "description": "Extrudes a 2D shape. Input can be negitive. "
-        },
-        {
-            "atomType": "GitHubMolecule",
-            "name": "Corrugated-Roofing-Line",
-            "x": 0.18584656084656084,
-            "y": 0.47632311977715874,
-            "uniqueID": "0b6479a6-4529-46ec-8b47-272cd50f4bcd",
-            "ioValues": [
-                {
-                    "name": "Number",
-                    "ioValue": 10
-                },
-                {
-                    "name": "Height",
-                    "ioValue": 40
-                }
-            ],
-            "description": "Molecules provide an organizational structure to contain atoms. Double click on a molecule to enter it. Use the up arrow in the upper right hand corner of the screen to go up one level.",
-            "topLevel": false,
-            "allAtoms": [
-                {
-                    "atomType": "Output",
-                    "name": "Output",
-                    "x": 0.98,
-                    "y": 0.5,
-                    "uniqueID": "a533eb1a-7537-4079-aefe-5423189117e8",
-                    "ioValues": [
-                        {
-                            "name": "number or geometry",
-                            "ioValue": "09cf8505-9cbb-4b74-8462-7226f5ad017b"
-                        }
-                    ],
-                    "description": "Connect geometry here to make it available in the next level up. "
-                },
-                {
-                    "atomType": "Code",
-                    "name": "Code",
-                    "x": 0.39616402116402116,
-                    "y": 0.4722222222222222,
-                    "uniqueID": "09cf8505-9cbb-4b74-8462-7226f5ad017b",
-                    "ioValues": [
-                        {
-                            "name": "number",
-                            "ioValue": 10
-                        },
-                        {
-                            "name": "height",
-                            "ioValue": 40
-                        }
-                    ],
-                    "description": "Defines a Replicad code block.",
-                    "codeVersion": 1,
-                    "code": " \n      //Inputs:[number, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      let factor = 2;\n      const period = 72;\n      const amplitude = 19 / 2;\n      const xScale = period / (2 * Math.PI);\n      const nPeriods = number; // ÃÂ°ÃÂÃÂÃÂ Number of periods to repeat\n      \n      let shape = replicad.draw();\n      \n      for (let i = 0; i < nPeriods; i++) {\n        let offsetX = i * period;\n      \n        // First spline: 0 to ÃÂÃÂ (up and back down)\n        shape = shape.smoothSplineTo(\n          [offsetX + Math.PI * xScale, 0 * amplitude],\n          {\n            startTangent: 45,         // Going up at start\n            startFactor: factor,\n            endTangent: -45,          // Coming down at ÃÂÃÂ\n            endFactor: factor\n          }\n        )\n        // Second spline: ÃÂÃÂ to 2ÃÂÃÂ (down and back up)\n        .smoothSplineTo(\n          [offsetX + 2 * Math.PI * xScale, 0 * amplitude],\n          {\n            startTangent: -45,        // Going down at ÃÂÃÂ\n            startFactor: factor,\n            endTangent: 45,           // Coming up at 2ÃÂÃÂ\n            endFactor: factor\n          }\n        );\n      }\n      \n      // Add base lines and close shape\n      shape = shape\n        .lineTo([nPeriods * period, -height])  // Right-bottom corner\n        .lineTo([0, -height])                  // Left-bottom corner\n        .close();                          // Close path\n\n      const newPlane = new replicad.Plane().pivot(0, 'Y');\n      \n      //For our new geometry we need to define the tags, color, plane, etc\n      let shape2 = {\n          geometry: [shape], \n          tags: [\"aTag\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n      \n      //Then we can return our created shape in just the same way\n      return shape2\n      "
-                },
-                {
-                    "atomType": "Input",
-                    "name": "Number",
-                    "x": 0.029699999999999997,
-                    "y": 0.48055555555555557,
-                    "uniqueID": "65707504-b882-47e9-9ebf-3f9e5b6fd46b",
-                    "ioValues": [],
-                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
-                    "type": "number"
-                },
-                {
-                    "atomType": "Input",
-                    "name": "Height",
-                    "x": 0.029699999999999997,
-                    "y": 0.7638888888888888,
-                    "uniqueID": "078b280f-48de-4f0c-b108-6e9f08f077b1",
-                    "ioValues": [],
-                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
-                    "type": "number"
-                }
-            ],
-            "allConnectors": [
-                {
-                    "ap1Name": "geometry",
-                    "ap2Name": "number or geometry",
-                    "ap2Primary": false,
-                    "ap1ID": "09cf8505-9cbb-4b74-8462-7226f5ad017b",
-                    "ap2ID": "a533eb1a-7537-4079-aefe-5423189117e8"
-                },
-                {
-                    "ap1Name": "number or geometry",
-                    "ap2Name": "number",
-                    "ap2Primary": false,
-                    "ap1ID": "65707504-b882-47e9-9ebf-3f9e5b6fd46b",
-                    "ap2ID": "09cf8505-9cbb-4b74-8462-7226f5ad017b"
-                },
-                {
-                    "ap1Name": "number or geometry",
-                    "ap2Name": "height",
-                    "ap2Primary": false,
-                    "ap1ID": "078b280f-48de-4f0c-b108-6e9f08f077b1",
-                    "ap2ID": "09cf8505-9cbb-4b74-8462-7226f5ad017b"
-                }
-            ],
-            "parentRepo": {
-                "privateRepo": false,
-                "repoName": "Corrugated-Roofing-Line",
-                "dateCreated": "2025-07-23T16:56:38Z",
-                "readMe": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Line/master/README.md?sanitize=true",
-                "yyyy": 2025,
-                "topMoleculeID": "ed9cd772-5603-476b-a930-f79dd0f51d32",
-                "githubMoleculesUsed": [],
-                "html_url": "https://github.com/BarbourSmith/Corrugated-Roofing-Line",
-                "topics": [],
-                "parentRepo": null,
-                "forks": 0,
-                "dateModified": "739455",
-                "ranking": 0,
-                "searchField": "corrugated-roofing-line barboursmith a straight line with bumps to match corrugated roofing material ",
-                "owner": "BarbourSmith",
-                "description": "A straight line with bumps to match corrugated roofing material",
-                "contentURL": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Line/master/project.abundance?sanitize=true",
-                "svgURL": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Line/master/project.svg?sanitize=true",
-                "isLocal": false
-            },
-            "unitsKey": "MM",
-            "fileTypeVersion": 1,
-            "compiledBom": []
-        },
-        {
-            "atomType": "Extrude",
-            "name": "Extrude",
-            "x": 0.333994708994709,
-            "y": 0.6629526462395543,
-            "uniqueID": "c9cfdebd-4075-4afc-a36c-6ec5c84bb191",
-            "ioValues": [
-                {
-                    "name": "geometry",
-                    "ioValue": "4199d811-3e0f-4d1f-ad40-ad01d1ec4131"
-                },
-                {
-                    "name": "height",
-                    "ioValue": 12
-                }
-            ],
-            "description": "Extrudes a 2D shape. Input can be negitive. "
-        },
-        {
-            "atomType": "Rotate",
-            "name": "Rotate",
-            "x": 0.4226190476190476,
-            "y": 0.67966573816156,
-            "uniqueID": "5eba50e6-187a-4015-a95b-024d42b3ec7d",
-            "ioValues": [
-                {
-                    "name": "geometry",
-                    "ioValue": "c9cfdebd-4075-4afc-a36c-6ec5c84bb191"
-                },
-                {
-                    "name": "x-axis degrees",
-                    "ioValue": 0
-                },
-                {
-                    "name": "y-axis degrees",
-                    "ioValue": 0
-                },
-                {
-                    "name": "z-axis degrees",
-                    "ioValue": 90
-                }
-            ],
-            "description": "Rotates the input geometry around the X, Y, or Z axis. Inputs are degrees."
-        },
-        {
-            "atomType": "Gcode",
-            "name": "Gcode",
-            "x": 0.5271164021164021,
-            "y": 0.5905292479108635,
-            "uniqueID": "2bbd88e7-646f-40b1-b9e6-6e4fcefcfb61",
-            "ioValues": [
-                {
-                    "name": "Geometry",
-                    "ioValue": "5eba50e6-187a-4015-a95b-024d42b3ec7d"
-                },
-                {
-                    "name": "Tool Size",
-                    "ioValue": 6.35
-                },
-                {
-                    "name": "Passes",
-                    "ioValue": 1
-                },
-                {
-                    "name": "Speed",
-                    "ioValue": 1500
-                },
-                {
-                    "name": "Cut Through",
-                    "ioValue": 1.5
-                },
-                {
-                    "name": "Part Name",
-                    "ioValue": "Line 79mm"
-                }
-            ],
-            "description": "Generates Maslow gcode from the input geometry. For single parts, generates one gcode file. For assemblies, extracts individual parts, sorts them left to right based on bounding boxes, generates gcode for each part sequentially, and concatenates the results into one file.",
-            "partName": "Line 79mm"
-        },
-        {
-            "atomType": "GitHubMolecule",
-            "name": "Corrugated-Roofing-Line",
-            "x": 0.19378306878306878,
-            "y": 0.8161559888579387,
-            "uniqueID": "4199d811-3e0f-4d1f-ad40-ad01d1ec4131",
-            "ioValues": [
-                {
-                    "name": "Number",
-                    "ioValue": 10
-                },
-                {
-                    "name": "Height",
-                    "ioValue": 40
-                }
-            ],
-            "description": "Molecules provide an organizational structure to contain atoms. Double click on a molecule to enter it. Use the up arrow in the upper right hand corner of the screen to go up one level.",
-            "topLevel": false,
-            "allAtoms": [
-                {
-                    "atomType": "Output",
-                    "name": "Output",
-                    "x": 0.98,
-                    "y": 0.5,
-                    "uniqueID": "7f55fbab-f735-43cb-be3d-516b4aab5497",
-                    "ioValues": [
-                        {
-                            "name": "number or geometry",
-                            "ioValue": "932566c5-a296-4e64-bb66-dfa7a21718fe"
-                        }
-                    ],
-                    "description": "Connect geometry here to make it available in the next level up. "
-                },
-                {
-                    "atomType": "Code",
-                    "name": "Code",
-                    "x": 0.39616402116402116,
-                    "y": 0.5041782729805014,
-                    "uniqueID": "932566c5-a296-4e64-bb66-dfa7a21718fe",
-                    "ioValues": [
-                        {
-                            "name": "number",
-                            "ioValue": 10
-                        },
-                        {
-                            "name": "height",
-                            "ioValue": 40
-                        }
-                    ],
-                    "description": "Defines a Replicad code block.",
-                    "codeVersion": 1,
-                    "code": " \n      //Inputs:[number, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      let factor = 2;\n      const period = 76;\n      const amplitude = 18 / 2;\n      const xScale = period / (2 * Math.PI);\n      const nPeriods = number; // ÃÂ°ÃÂÃÂÃÂ Number of periods to repeat\n      \n      let shape = replicad.draw();\n      \n      for (let i = 0; i < nPeriods; i++) {\n        let offsetX = i * period;\n      \n        // First spline: 0 to ÃÂÃÂ (up and back down)\n        shape = shape.smoothSplineTo(\n          [offsetX + Math.PI * xScale, 0 * amplitude],\n          {\n            startTangent: 45,         // Going up at start\n            startFactor: factor,\n            endTangent: -45,          // Coming down at ÃÂÃÂ\n            endFactor: factor\n          }\n        )\n        // Second spline: ÃÂÃÂ to 2ÃÂÃÂ (down and back up)\n        .smoothSplineTo(\n          [offsetX + 2 * Math.PI * xScale, 0 * amplitude],\n          {\n            startTangent: -45,        // Going down at ÃÂÃÂ\n            startFactor: factor,\n            endTangent: 45,           // Coming up at 2ÃÂÃÂ\n            endFactor: factor\n          }\n        );\n      }\n      \n      // Add base lines and close shape\n      shape = shape\n        .lineTo([nPeriods * period, -height])  // Right-bottom corner\n        .lineTo([0, -height])                  // Left-bottom corner\n        .close();                          // Close path\n\n      const newPlane = new replicad.Plane().pivot(0, 'Y');\n      \n      //For our new geometry we need to define the tags, color, plane, etc\n      let shape2 = {\n          geometry: [shape], \n          tags: [\"aTag\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n      \n      //Then we can return our created shape in just the same way\n      return shape2\n      "
-                },
-                {
-                    "atomType": "Input",
-                    "name": "Number",
-                    "x": 0.029699999999999997,
-                    "y": 0.48055555555555557,
-                    "uniqueID": "e7996307-e5ae-48ea-ac68-7158969ff4e2",
-                    "ioValues": [],
-                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
-                    "type": "number"
-                },
-                {
-                    "atomType": "Input",
-                    "name": "Height",
-                    "x": 0.029699999999999997,
-                    "y": 0.7638888888888888,
-                    "uniqueID": "112d9db2-ff61-450c-8bb4-6e0a410d6366",
-                    "ioValues": [],
-                    "description": "Adds an input to the parent molecule. If the parent molecule is the top level of the project then the input will be available when the project is shared or imported into another project. Name is editable",
-                    "type": "number"
-                }
-            ],
-            "allConnectors": [
-                {
-                    "ap1Name": "geometry",
-                    "ap2Name": "number or geometry",
-                    "ap2Primary": false,
-                    "ap1ID": "932566c5-a296-4e64-bb66-dfa7a21718fe",
-                    "ap2ID": "7f55fbab-f735-43cb-be3d-516b4aab5497"
-                },
-                {
-                    "ap1Name": "number or geometry",
-                    "ap2Name": "number",
-                    "ap2Primary": false,
-                    "ap1ID": "e7996307-e5ae-48ea-ac68-7158969ff4e2",
-                    "ap2ID": "932566c5-a296-4e64-bb66-dfa7a21718fe"
-                },
-                {
-                    "ap1Name": "number or geometry",
-                    "ap2Name": "height",
-                    "ap2Primary": false,
-                    "ap1ID": "112d9db2-ff61-450c-8bb4-6e0a410d6366",
-                    "ap2ID": "932566c5-a296-4e64-bb66-dfa7a21718fe"
-                }
-            ],
-            "parentRepo": {
-                "privateRepo": false,
-                "repoName": "Corrugated-Roofing-Line",
-                "dateCreated": "2025-07-23T16:56:38Z",
-                "readMe": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Line/master/README.md?sanitize=true",
-                "yyyy": 2025,
-                "topMoleculeID": "ed9cd772-5603-476b-a930-f79dd0f51d32",
-                "githubMoleculesUsed": [],
-                "html_url": "https://github.com/BarbourSmith/Corrugated-Roofing-Line",
-                "topics": [],
-                "parentRepo": null,
-                "forks": 0,
-                "dateModified": "739468",
-                "ranking": 0,
-                "searchField": "corrugated-roofing-line barboursmith a straight line with bumps to match corrugated roofing material ",
-                "owner": "BarbourSmith",
-                "description": "A straight line with bumps to match corrugated roofing material",
-                "contentURL": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Line/master/project.abundance?sanitize=true",
-                "svgURL": "https://raw.githubusercontent.com/BarbourSmith/Corrugated-Roofing-Line/master/project.svg?sanitize=true",
-                "isLocal": false
-            },
-            "unitsKey": "MM",
-            "fileTypeVersion": 1,
-            "compiledBom": []
+          "name": "number or geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
         }
-    ],
-    "allConnectors": [
+      ]
+    },
+    {
+      "atomType": "Code",
+      "x": 0.38095238095238093,
+      "y": 0.28969359331476324,
+      "uniqueID": "id-63",
+      "ioValues": [
         {
-            "ap1Name": "geometry",
-            "ap2Name": "number or geometry",
-            "ap2Primary": false,
-            "ap1ID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9",
-            "ap2ID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f"
+          "name": "numberOfTeeth",
+          "ioValue": 30,
+          "currentEquation": "30"
         },
         {
-            "ap1Name": "geometry",
-            "ap2Name": "Geometry",
-            "ap2Primary": false,
-            "ap1ID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9",
-            "ap2ID": "d532c8de-9811-4dd6-9d8a-33226b7e2b52"
-        },
-        {
-            "ap1Name": "Geometry",
-            "ap2Name": "geometry",
-            "ap2Primary": true,
-            "ap1ID": "ae5c1375-c39a-45af-a537-244e63047412",
-            "ap2ID": "ab7f3a5b-3e62-4132-b563-0ab3e78c37d9"
-        },
-        {
-            "ap1Name": "geometry",
-            "ap2Name": "geometry",
-            "ap2Primary": true,
-            "ap1ID": "e7516ae2-7c7f-4838-a48c-28783827363b",
-            "ap2ID": "366246b9-7e0d-432d-82ab-621cda33ac78"
-        },
-        {
-            "ap1Name": "geometry",
-            "ap2Name": "geometry",
-            "ap2Primary": true,
-            "ap1ID": "c9cfdebd-4075-4afc-a36c-6ec5c84bb191",
-            "ap2ID": "5eba50e6-187a-4015-a95b-024d42b3ec7d"
-        },
-        {
-            "ap1Name": "geometry",
-            "ap2Name": "Geometry",
-            "ap2Primary": false,
-            "ap1ID": "5eba50e6-187a-4015-a95b-024d42b3ec7d",
-            "ap2ID": "2bbd88e7-646f-40b1-b9e6-6e4fcefcfb61"
-        },
-        {
-            "ap1Name": "Geometry",
-            "ap2Name": "geometry",
-            "ap2Primary": true,
-            "ap1ID": "4199d811-3e0f-4d1f-ad40-ad01d1ec4131",
-            "ap2ID": "c9cfdebd-4075-4afc-a36c-6ec5c84bb191"
+          "name": "faceWidth",
+          "ioValue": 6
         }
-    ],
-    "unitsKey": "MM",
-    "fileTypeVersion": 1,
-    "compiledBom": [],
-    "filetypeVersion": 1
+      ],
+      "interpreterVersion": 1,
+      "code": "/**\n * 2GT (GT2) timing belt pulley.\n * Teeth point outward; profile is the complement of the GT2 belt tooth so\n * the belt's gaps mesh onto the pulley's tips. Uses Gates' standard PLD\n * offset (PD = OD + 0.254 mm) so the pulley meshes correctly with a real\n * 2GT belt.\n */\nfunction run(numberOfTeeth: number = 20, faceWidth: number = 6) {\n  const N = Math.max(8, Math.round(numberOfTeeth));\n  const pitch = 2.0;     // GT2 tooth pitch\n  const toothWidth = 1.15;    // chord width at pitch line (matches belt)\n  const toothDepth = 0.75;    // radial tooth height\n  const PLDoffset = 0.254;   // Gates GT2 PLD offset: PD - OD\n\n  const pitchR = (N * pitch) / (2 * Math.PI);  // pitch radius\n  const tipR = pitchR - PLDoffset / 2;       // pulley OD/2 (top of teeth)\n  const rootR = tipR - toothDepth;            // valley between teeth\n  if (rootR <= 0.1) throw new Error(\"Too few teeth for this pulley size\");\n\n  const alphaHalf = (toothWidth / 2) / pitchR; // angular half-width of tooth\n  const toothAngle = (2 * Math.PI) / N;\n  const toothSteps = 16;\n  const gapSteps = 6;\n\n  const pts: [number, number][] = [];\n\n  for (let i = 0; i < N; i++) {\n    const phiC = i * toothAngle;\n\n    // Tooth bump: half-ellipse in polar coords, parameter t ∈ [0, π].\n    //   φ(t) = φc − αhalf · cos t      (sweeps angularly across the tooth)\n    //   r(t) = rootR + depth · sin t   (rises from root to tip and back)\n    for (let s = 0; s <= toothSteps; s++) {\n      const t = Math.PI * (s / toothSteps);\n      const phi = phiC - alphaHalf * Math.cos(t);\n      const r = rootR + toothDepth * Math.sin(t);\n      pts.push([r * Math.cos(phi), r * Math.sin(phi)]);\n    }\n\n    // Gap arc on the root circle to the next tooth (interior points only).\n    const gapStart = phiC + alphaHalf;\n    const gapEnd = phiC + toothAngle - alphaHalf;\n    for (let s = 1; s < gapSteps; s++) {\n      const phi = gapStart + (gapEnd - gapStart) * (s / gapSteps);\n      pts.push([rootR * Math.cos(phi), rootR * Math.sin(phi)]);\n    }\n  }\n\n  let pen = replicad.draw(pts[0]);\n  for (let i = 1; i < pts.length; i++) pen = pen.lineTo(pts[i]);\n  const crossSection = pen.close();\n\n  return crossSection.sketchOnPlane().extrude(faceWidth);\n}",
+      "compiledCode": "\"use strict\";\n/**\n * 2GT (GT2) timing belt pulley.\n * Teeth point outward; profile is the complement of the GT2 belt tooth so\n * the belt's gaps mesh onto the pulley's tips. Uses Gates' standard PLD\n * offset (PD = OD + 0.254 mm) so the pulley meshes correctly with a real\n * 2GT belt.\n */\nfunction run(numberOfTeeth = 20, faceWidth = 6) {\n    const N = Math.max(8, Math.round(numberOfTeeth));\n    const pitch = 2.0; // GT2 tooth pitch\n    const toothWidth = 1.15; // chord width at pitch line (matches belt)\n    const toothDepth = 0.75; // radial tooth height\n    const PLDoffset = 0.254; // Gates GT2 PLD offset: PD - OD\n    const pitchR = (N * pitch) / (2 * Math.PI); // pitch radius\n    const tipR = pitchR - PLDoffset / 2; // pulley OD/2 (top of teeth)\n    const rootR = tipR - toothDepth; // valley between teeth\n    if (rootR <= 0.1)\n        throw new Error(\"Too few teeth for this pulley size\");\n    const alphaHalf = (toothWidth / 2) / pitchR; // angular half-width of tooth\n    const toothAngle = (2 * Math.PI) / N;\n    const toothSteps = 16;\n    const gapSteps = 6;\n    const pts = [];\n    for (let i = 0; i < N; i++) {\n        const phiC = i * toothAngle;\n        // Tooth bump: half-ellipse in polar coords, parameter t ∈ [0, π].\n        //   φ(t) = φc − αhalf · cos t      (sweeps angularly across the tooth)\n        //   r(t) = rootR + depth · sin t   (rises from root to tip and back)\n        for (let s = 0; s <= toothSteps; s++) {\n            const t = Math.PI * (s / toothSteps);\n            const phi = phiC - alphaHalf * Math.cos(t);\n            const r = rootR + toothDepth * Math.sin(t);\n            pts.push([r * Math.cos(phi), r * Math.sin(phi)]);\n        }\n        // Gap arc on the root circle to the next tooth (interior points only).\n        const gapStart = phiC + alphaHalf;\n        const gapEnd = phiC + toothAngle - alphaHalf;\n        for (let s = 1; s < gapSteps; s++) {\n            const phi = gapStart + (gapEnd - gapStart) * (s / gapSteps);\n            pts.push([rootR * Math.cos(phi), rootR * Math.sin(phi)]);\n        }\n    }\n    let pen = replicad.draw(pts[0]);\n    for (let i = 1; i < pts.length; i++)\n        pen = pen.lineTo(pts[i]);\n    const crossSection = pen.close();\n    return crossSection.sketchOnPlane().extrude(faceWidth);\n}\n"
+    },
+    {
+      "atomType": "Circle",
+      "x": 0.3511904761904762,
+      "y": 0.6211699164345404,
+      "uniqueID": "id-70",
+      "ioValues": [
+        {
+          "name": "diameter",
+          "ioValue": 5,
+          "currentEquation": "5"
+        }
+      ]
+    },
+    {
+      "atomType": "Extrude",
+      "x": 0.45119047619047625,
+      "y": 0.6211699164345404,
+      "uniqueID": "id-73",
+      "ioValues": [
+        {
+          "name": "geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        },
+        {
+          "name": "height",
+          "ioValue": 19
+        }
+      ]
+    },
+    {
+      "atomType": "Fusion",
+      "x": 0.5952380952380952,
+      "y": 0.6128133704735376,
+      "uniqueID": "id-77",
+      "ioValues": [
+        {
+          "name": "Shape 1",
+          "ioValue": {
+            "geometry": "extrude-circle-2.5-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-19",
+            "dimension": "3D",
+            "tags": [],
+            "plane": {
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "xDir": [
+                1,
+                0,
+                0
+              ],
+              "normal": [
+                0,
+                0,
+                1
+              ]
+            },
+            "color": "#aad7f2",
+            "bom": []
+          }
+        },
+        {
+          "name": "Shape 2",
+          "ioValue": {
+            "geometry": "55468478-30-6-0",
+            "color": "#ffffff",
+            "tags": [],
+            "bom": [],
+            "plane": {
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "xDir": [
+                1,
+                0,
+                0
+              ],
+              "normal": [
+                0,
+                0,
+                1
+              ]
+            }
+          }
+        }
+      ],
+      "unionType": "Fusion"
+    }
+  ],
+  "allConnectors": [
+    {
+      "ap2Name": "Shape 2",
+      "ap1ID": "id-63",
+      "ap2ID": "id-77"
+    },
+    {
+      "ap2Name": "number or geometry",
+      "ap1ID": "id-63",
+      "ap2ID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f"
+    },
+    {
+      "ap2Name": "geometry",
+      "ap1ID": "id-70",
+      "ap2ID": "id-73"
+    },
+    {
+      "ap2Name": "Shape 1",
+      "ap1ID": "id-73",
+      "ap2ID": "id-77"
+    }
+  ],
+  "unitsKey": "MM",
+  "fileTypeVersion": 1,
+  "filetypeVersion": 1
 }
