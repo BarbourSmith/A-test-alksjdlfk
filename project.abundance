@@ -19,137 +19,155 @@
       ]
     },
     {
-      "atomType": "Code",
-      "x": 0.38095238095238093,
-      "y": 0.28969359331476324,
-      "uniqueID": "id-63",
+      "atomType": "GitHubMolecule",
+      "x": 0.4001322751322751,
+      "y": 0.415041782729805,
+      "uniqueID": "id-102",
+      "name": "Internal_Gear_Spacing_Calculator",
       "ioValues": [
         {
-          "name": "numberOfTeeth",
-          "ioValue": 30,
-          "currentEquation": "30"
+          "name": "Gear_#1_Teeth",
+          "ioValue": 138,
+          "currentEquation": "138"
         },
         {
-          "name": "faceWidth",
-          "ioValue": 6
+          "name": "Gear_#2_Teeth",
+          "ioValue": 18,
+          "currentEquation": "18"
+        },
+        {
+          "name": "Pitch",
+          "ioValue": 3.14,
+          "currentEquation": "3.14"
         }
       ],
-      "interpreterVersion": 1,
-      "code": "/**\n * 2GT (GT2) timing belt pulley.\n * Teeth point outward; profile is the complement of the GT2 belt tooth so\n * the belt's gaps mesh onto the pulley's tips. Uses Gates' standard PLD\n * offset (PD = OD + 0.254 mm) so the pulley meshes correctly with a real\n * 2GT belt.\n */\nfunction run(numberOfTeeth: number = 20, faceWidth: number = 6) {\n  const N = Math.max(8, Math.round(numberOfTeeth));\n  const pitch = 2.0;     // GT2 tooth pitch\n  const toothWidth = 1.15;    // chord width at pitch line (matches belt)\n  const toothDepth = 0.75;    // radial tooth height\n  const PLDoffset = 0.254;   // Gates GT2 PLD offset: PD - OD\n\n  const pitchR = (N * pitch) / (2 * Math.PI);  // pitch radius\n  const tipR = pitchR - PLDoffset / 2;       // pulley OD/2 (top of teeth)\n  const rootR = tipR - toothDepth;            // valley between teeth\n  if (rootR <= 0.1) throw new Error(\"Too few teeth for this pulley size\");\n\n  const alphaHalf = (toothWidth / 2) / pitchR; // angular half-width of tooth\n  const toothAngle = (2 * Math.PI) / N;\n  const toothSteps = 16;\n  const gapSteps = 6;\n\n  const pts: [number, number][] = [];\n\n  for (let i = 0; i < N; i++) {\n    const phiC = i * toothAngle;\n\n    // Tooth bump: half-ellipse in polar coords, parameter t ∈ [0, π].\n    //   φ(t) = φc − αhalf · cos t      (sweeps angularly across the tooth)\n    //   r(t) = rootR + depth · sin t   (rises from root to tip and back)\n    for (let s = 0; s <= toothSteps; s++) {\n      const t = Math.PI * (s / toothSteps);\n      const phi = phiC - alphaHalf * Math.cos(t);\n      const r = rootR + toothDepth * Math.sin(t);\n      pts.push([r * Math.cos(phi), r * Math.sin(phi)]);\n    }\n\n    // Gap arc on the root circle to the next tooth (interior points only).\n    const gapStart = phiC + alphaHalf;\n    const gapEnd = phiC + toothAngle - alphaHalf;\n    for (let s = 1; s < gapSteps; s++) {\n      const phi = gapStart + (gapEnd - gapStart) * (s / gapSteps);\n      pts.push([rootR * Math.cos(phi), rootR * Math.sin(phi)]);\n    }\n  }\n\n  let pen = replicad.draw(pts[0]);\n  for (let i = 1; i < pts.length; i++) pen = pen.lineTo(pts[i]);\n  const crossSection = pen.close();\n\n  return crossSection.sketchOnPlane().extrude(faceWidth);\n}",
-      "compiledCode": "\"use strict\";\n/**\n * 2GT (GT2) timing belt pulley.\n * Teeth point outward; profile is the complement of the GT2 belt tooth so\n * the belt's gaps mesh onto the pulley's tips. Uses Gates' standard PLD\n * offset (PD = OD + 0.254 mm) so the pulley meshes correctly with a real\n * 2GT belt.\n */\nfunction run(numberOfTeeth = 20, faceWidth = 6) {\n    const N = Math.max(8, Math.round(numberOfTeeth));\n    const pitch = 2.0; // GT2 tooth pitch\n    const toothWidth = 1.15; // chord width at pitch line (matches belt)\n    const toothDepth = 0.75; // radial tooth height\n    const PLDoffset = 0.254; // Gates GT2 PLD offset: PD - OD\n    const pitchR = (N * pitch) / (2 * Math.PI); // pitch radius\n    const tipR = pitchR - PLDoffset / 2; // pulley OD/2 (top of teeth)\n    const rootR = tipR - toothDepth; // valley between teeth\n    if (rootR <= 0.1)\n        throw new Error(\"Too few teeth for this pulley size\");\n    const alphaHalf = (toothWidth / 2) / pitchR; // angular half-width of tooth\n    const toothAngle = (2 * Math.PI) / N;\n    const toothSteps = 16;\n    const gapSteps = 6;\n    const pts = [];\n    for (let i = 0; i < N; i++) {\n        const phiC = i * toothAngle;\n        // Tooth bump: half-ellipse in polar coords, parameter t ∈ [0, π].\n        //   φ(t) = φc − αhalf · cos t      (sweeps angularly across the tooth)\n        //   r(t) = rootR + depth · sin t   (rises from root to tip and back)\n        for (let s = 0; s <= toothSteps; s++) {\n            const t = Math.PI * (s / toothSteps);\n            const phi = phiC - alphaHalf * Math.cos(t);\n            const r = rootR + toothDepth * Math.sin(t);\n            pts.push([r * Math.cos(phi), r * Math.sin(phi)]);\n        }\n        // Gap arc on the root circle to the next tooth (interior points only).\n        const gapStart = phiC + alphaHalf;\n        const gapEnd = phiC + toothAngle - alphaHalf;\n        for (let s = 1; s < gapSteps; s++) {\n            const phi = gapStart + (gapEnd - gapStart) * (s / gapSteps);\n            pts.push([rootR * Math.cos(phi), rootR * Math.sin(phi)]);\n        }\n    }\n    let pen = replicad.draw(pts[0]);\n    for (let i = 1; i < pts.length; i++)\n        pen = pen.lineTo(pts[i]);\n    const crossSection = pen.close();\n    return crossSection.sketchOnPlane().extrude(faceWidth);\n}\n"
-    },
-    {
-      "atomType": "Circle",
-      "x": 0.3511904761904762,
-      "y": 0.6211699164345404,
-      "uniqueID": "id-70",
-      "ioValues": [
+      "topLevel": false,
+      "allAtoms": [
         {
-          "name": "diameter",
-          "ioValue": 5,
-          "currentEquation": "5"
-        }
-      ]
-    },
-    {
-      "atomType": "Extrude",
-      "x": 0.45119047619047625,
-      "y": 0.6211699164345404,
-      "uniqueID": "id-73",
-      "ioValues": [
-        {
-          "name": "geometry",
-          "ioValue": "__GEOMETRY_INPUT__"
-        },
-        {
-          "name": "height",
-          "ioValue": 19
-        }
-      ]
-    },
-    {
-      "atomType": "Fusion",
-      "x": 0.5952380952380952,
-      "y": 0.6128133704735376,
-      "uniqueID": "id-77",
-      "ioValues": [
-        {
-          "name": "Shape 1",
-          "ioValue": {
-            "geometry": "extrude-circle-2.5-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-19",
-            "dimension": "3D",
-            "tags": [],
-            "plane": {
-              "origin": [
-                0,
-                0,
-                0
-              ],
-              "xDir": [
-                1,
-                0,
-                0
-              ],
-              "normal": [
-                0,
-                0,
-                1
-              ]
-            },
-            "color": "#aad7f2",
-            "bom": []
-          }
-        },
-        {
-          "name": "Shape 2",
-          "ioValue": {
-            "geometry": "55468478-30-6-0",
-            "color": "#ffffff",
-            "tags": [],
-            "bom": [],
-            "plane": {
-              "origin": [
-                0,
-                0,
-                0
-              ],
-              "xDir": [
-                1,
-                0,
-                0
-              ],
-              "normal": [
-                0,
-                0,
-                1
-              ]
+          "atomType": "Output",
+          "x": 0.98,
+          "y": 0.5,
+          "uniqueID": "id-97",
+          "ioValues": [
+            {
+              "name": "number or geometry",
+              "ioValue": "__GEOMETRY_INPUT__"
             }
-          }
+          ]
+        },
+        {
+          "atomType": "Code",
+          "x": 0.4100529100529101,
+          "y": 0.34818941504178275,
+          "uniqueID": "id-98",
+          "ioValues": [
+            {
+              "name": "teeth1",
+              "ioValue": 138
+            },
+            {
+              "name": "teeth2",
+              "ioValue": 18
+            },
+            {
+              "name": "pitch",
+              "ioValue": 3.14
+            }
+          ],
+          "interpreterVersion": 1,
+          "code": "function run(teeth1: number, teeth2: number, pitch: number, internal: boolean = true) {\n  // External mesh: centers separated by (D1 + D2)/2\n  // Internal mesh (ring + pinion): centers separated by (D_ring − D_pinion)/2\n  const sign = internal ? -1 : 1;\n  return ((teeth1 + sign * teeth2) * pitch) / (2 * Math.PI);\n}",
+          "compiledCode": "\"use strict\";\nfunction run(teeth1, teeth2, pitch, internal = true) {\n    // External mesh: centers separated by (D1 + D2)/2\n    // Internal mesh (ring + pinion): centers separated by (D_ring − D_pinion)/2\n    const sign = internal ? -1 : 1;\n    return ((teeth1 + sign * teeth2) * pitch) / (2 * Math.PI);\n}\n"
+        },
+        {
+          "atomType": "Input",
+          "x": 0.025384615384615384,
+          "y": 0.15384615384615385,
+          "uniqueID": "id-99",
+          "name": "Gear_#1_Teeth"
+        },
+        {
+          "atomType": "Input",
+          "x": 0.025384615384615384,
+          "y": 0.24615384615384617,
+          "uniqueID": "id-100",
+          "name": "Gear_#2_Teeth"
+        },
+        {
+          "atomType": "Input",
+          "x": 0.025384615384615384,
+          "y": 0.3384615384615385,
+          "uniqueID": "id-101",
+          "name": "Pitch"
         }
       ],
-      "unionType": "Fusion"
+      "allConnectors": [
+        {
+          "ap2Name": "number or geometry",
+          "ap1ID": "id-98",
+          "ap2ID": "id-97"
+        },
+        {
+          "ap2Name": "teeth1",
+          "ap1ID": "id-99",
+          "ap2ID": "id-98"
+        },
+        {
+          "ap2Name": "teeth2",
+          "ap1ID": "id-100",
+          "ap2ID": "id-98"
+        },
+        {
+          "ap2Name": "pitch",
+          "ap1ID": "id-101",
+          "ap2ID": "id-98"
+        }
+      ],
+      "parentRepo": {
+        "lastFoundGit": "2026-05-06T18:23:39.022Z",
+        "privateRepo": false,
+        "repoName": "Internal_Gear_Spacing_Calculator",
+        "dateCreated": "2026-05-06T17:10:03Z",
+        "readMe": "https://raw.githubusercontent.com/BarbourSmith/Internal_Gear_Spacing_Calculator/master/README.md?sanitize=true",
+        "yyyy": 2026,
+        "topMoleculeID": "id-7773",
+        "githubMoleculesUsed": [],
+        "html_url": "https://github.com/BarbourSmith/Internal_Gear_Spacing_Calculator",
+        "topics": [],
+        "parentRepo": null,
+        "forks": 0,
+        "dateModified": "739742",
+        "ranking": 0,
+        "searchField": "internal_gear_spacing_calculator barboursmith calculates the spacing for a gear with internal teeth ",
+        "owner": "BarbourSmith",
+        "description": "Calculates the spacing for a gear with internal teeth",
+        "contentURL": "https://raw.githubusercontent.com/BarbourSmith/Internal_Gear_Spacing_Calculator/master/project.abundance?sanitize=true",
+        "svgURL": "https://raw.githubusercontent.com/BarbourSmith/Internal_Gear_Spacing_Calculator/master/project.svg?sanitize=true",
+        "isLocal": false
+      },
+      "unitsKey": "MM",
+      "fileTypeVersion": 1,
+      "lastReloadedFromGithubAt": 1778098580523
+    },
+    {
+      "atomType": "Equation",
+      "x": 0.5238095238095238,
+      "y": 0.5821727019498607,
+      "uniqueID": "id-118",
+      "name": "x",
+      "ioValues": [
+        {
+          "name": "x",
+          "ioValue": 59.969582557026165
+        }
+      ],
+      "currentEquation": "x"
     }
   ],
   "allConnectors": [
     {
-      "ap2Name": "Shape 2",
-      "ap1ID": "id-63",
-      "ap2ID": "id-77"
-    },
-    {
-      "ap2Name": "number or geometry",
-      "ap1ID": "id-63",
-      "ap2ID": "bdef8a0b-243f-4e69-aa91-ad57f241dd9f"
-    },
-    {
-      "ap2Name": "geometry",
-      "ap1ID": "id-70",
-      "ap2ID": "id-73"
-    },
-    {
-      "ap2Name": "Shape 1",
-      "ap1ID": "id-73",
-      "ap2ID": "id-77"
+      "ap2Name": "x",
+      "ap1ID": "id-102",
+      "ap2ID": "id-118"
     }
   ],
   "unitsKey": "MM",
